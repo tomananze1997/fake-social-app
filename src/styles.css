@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.customButton {
+  @apply bg-blue-700 text-white rounded px-2 active:opacity-70 active:scale-95
+}
+
+input.ng-invalid.ng-touched {
+  @apply border-red-600
+}
+
+.customInput {
+  @apply border px-2 w-full mx-1
+}

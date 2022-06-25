@@ -11,7 +11,8 @@ import { AlbumsComponent } from './components/albums/albums.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
-import { UserAlbumComponent } from './components/userComponents/user-album/user-album.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,9 @@ import { UserAlbumComponent } from './components/userComponents/user-album/user-
     PhotosComponent,
     PostsComponent,
     PostComponent,
-    UserAlbumComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
