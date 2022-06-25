@@ -9,14 +9,21 @@ import { User } from '../interfaces/user';
 })
 export class UserService {
   users = new ReplaySubject<User[]>();
+  user = new ReplaySubject<User>();
 
   constructor(private http: HttpClient) {}
 
   getInitialUsers() {
-    this.http.get<User[]>(`${environment.appUrl}/users`).subscribe((data) => {
-      return this.users.next(data);
-    });
+    this.http
+      .get<User[]>(`${environment.appUrl}/users`)
+      .subscribe((data) => this.users.next(data));
   }
 
   addNewUser(user: User) {}
+
+  getSingleUser(id: number) {
+    this.http
+      .get<User>(`${environment.appUrl}/users/${id}`)
+      .subscribe((data) => this.user.next(data));
+  }
 }

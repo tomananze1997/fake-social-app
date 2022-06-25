@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userService.getInitialUsers();
     this.userSubscription = this.userService.users.subscribe(
-      (data) => (this.users = data)
+      (data: User[]) => (this.users = data)
     );
   }
 

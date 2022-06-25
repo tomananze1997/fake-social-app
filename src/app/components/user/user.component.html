@@ -1,1 +1,24 @@
-<p>user works!</p>
+<div *ngIf="user;else loading" class="m-10">
+  <h1 class="text-2xl "><span class="font-medium">{{user.name}}</span></h1>
+  <h2 class="text-lg  mt-3">Personal data</h2>
+  <p class="pl-3 py-1 ">Username: <span class="pl-1 font-medium">{{user.username | unknownSpan}}</span></p>
+  <p class="pl-3 py-1 ">Email: <span class="pl-1 font-medium">{{user.email | unknownSpan}}</span></p>
+  <p class="pl-3 py-1 ">Phone number: <span class="pl-1 font-medium">{{user.phone | unknownSpan}}</span></p>
+  <hr>
+  <h2 class="text-lg  mt-3">Address</h2>
+  <p class="pl-3 py-1 ">Website: <span class="pl-1 font-medium">{{user.address.street | unknownSpan}}</span></p>
+  <p class="pl-3 py-1 ">Suite:: <span class="pl-1 font-medium">{{user.address?.suite | unknownSpan}}</span></p>
+  <p class="pl-3 py-1 ">Phone number: <span class="pl-1 font-medium">{{user.address.city | unknownSpan}}</span></p>
+  <p class="pl-3 py-1 ">Website: <span class="pl-1 font-medium">{{user.address.zipcode}}</span></p>
+  <hr>
+  <h2 class="text-lg  mt-3">Company data</h2>
+  <p class="pl-3 py-1 ">Company name: <span class="pl-1 font-medium">{{user.company?.name | unknownSpan}}</span></p>
+  <p class="pl-3 py-1 ">Company catch phrase: <span
+    class="pl-1 font-medium">{{user.company?.catchPhrase | unknownSpan}}</span></p>
+  <p class="pl-3 py-1 ">Company bs: <span class="pl-1 font-medium">{{user.company?.bs | unknownSpan}}</span></p>
+</div>
+<ng-template #loading>
+  <h1>
+    LOADING DATA...
+  </h1>
+</ng-template>
