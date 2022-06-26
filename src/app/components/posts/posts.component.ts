@@ -10,7 +10,6 @@ import { Post } from '../../interfaces/post';
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
-  postsSubscription: Subscription;
   postList: Post[];
   userPostStyle = false;
 

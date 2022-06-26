@@ -22,10 +22,6 @@ export class AlbumService {
       .subscribe((data: Album[]) => this.albums.next(data));
   }
 
-  getInitialPhotos() {
-    return this.http.get<Photo[]>(`${environment.appUrl}/photos`);
-  }
-
   getUserAlbums(id: number) {
     return this.http.get<Album[]>(`${environment.appUrl}/users/${id}/albums`);
   }

@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
 })
-export class UserComponent implements OnInit, OnDestroy {
+export class UserComponent implements OnInit {
   user: User;
 
   constructor(
@@ -24,6 +24,4 @@ export class UserComponent implements OnInit, OnDestroy {
         .subscribe((user: User) => (this.user = user));
     });
   }
-
-  ngOnDestroy() {}
 }

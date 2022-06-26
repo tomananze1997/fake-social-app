@@ -3,7 +3,7 @@
     <div class="w-3/12 p-2 flex flex-col">
       <h3 class="my-2 font-medium">Please select user from the list:</h3>
       <ul>
-        <li *ngFor="let user of users" [routerLink]="['/users', user.id,]"
+        <li *ngFor="let user of users" [routerLink]="['/users', user.id, 'info']"
             routerLinkActive="border-blue-300 text-neutral-700 bg-blue-100"
             (click)="toggleUser(user.id)"
             class="cursor-pointer p-1 border rounded text-neutral-700 font-bold my-0.5 hover:opacity-70 active:scale-95">
@@ -13,7 +13,8 @@
     </div>
     <section *ngIf="userSelected" class="mt-16 w-9/12">
       <nav>
-        <button class="customButton bg-blue-500 mx-2" routerLinkActive="opacity-60" [routerLink]="['/users', userId]"
+        <button class="customButton bg-blue-500 mx-2" routerLinkActive="opacity-60"
+                [routerLink]="['/users', userId,'info']"
                 [routerLinkActiveOptions]="{exact:true}">User Info
         </button>
         <button class="customButton bg-blue-500 mx-2" routerLinkActive="opacity-60"
@@ -26,7 +27,6 @@
           Posts
         </button>
       </nav>
-
       <router-outlet></router-outlet>
     </section>
   </div>

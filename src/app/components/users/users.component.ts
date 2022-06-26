@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user';
-import { Subscription } from 'rxjs';
-import { Form } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -13,10 +12,13 @@ export class UsersComponent implements OnInit, OnDestroy {
   userSelected = false;
   userId: number;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.users.subscribe((data: User[]) => (this.users = data));
+    if (this.router.url.includes('info')) {
+      this.userSelected = true;
+    }
   }
 
   ngOnDestroy() {

@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './components/user/user.component';
 import { AlbumsComponent } from './components/albums/albums.component';
@@ -14,13 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UnknownSpanPipe } from './pipes/unknown-span.pipe';
 import { ShortenPipe } from './pipes/shorten.pipe';
-import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
     UsersComponent,
     UserComponent,
     AlbumsComponent,
@@ -28,7 +25,6 @@ import { CommentComponent } from './components/comment/comment.component';
     PostComponent,
     UnknownSpanPipe,
     ShortenPipe,
-    CommentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

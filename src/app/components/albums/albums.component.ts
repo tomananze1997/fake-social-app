@@ -11,8 +11,6 @@ import { Photo } from '../../interfaces/photo';
   styleUrls: ['./albums.component.css'],
 })
 export class AlbumsComponent implements OnInit {
-  albumSubscription: Subscription;
-  photoSubscription: Subscription;
   albumList: Album[];
   albumPhotos: Photo[];
   modalOpen = false;

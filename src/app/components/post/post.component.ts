@@ -1,7 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Post } from '../../interfaces/post';
 import { PostService } from '../../services/post.service';
-import { Subscription } from 'rxjs';
 import { Comment } from '../../interfaces/comment';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user';
@@ -11,7 +10,7 @@ import { User } from '../../interfaces/user';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnDestroy {
   shortenText = true;
   openComments = false;
   comments: Comment[] = [];
@@ -31,5 +30,10 @@ export class PostComponent implements OnInit {
     this.userService
       .getSingleUser(this.post.userId)
       .subscribe((value: User) => (this.currentUser = value));
+  }
+
+  ngOnDestroy() {
+    this.shortenText = true;
+    this.openComments = false;
   }
 }
