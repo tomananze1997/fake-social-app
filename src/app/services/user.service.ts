@@ -9,7 +9,6 @@ import { User } from '../interfaces/user';
 })
 export class UserService {
   users = new ReplaySubject<User[]>();
-  user = new ReplaySubject<User>();
 
   constructor(private http: HttpClient) {}
 
@@ -19,11 +18,7 @@ export class UserService {
       .subscribe((data) => this.users.next(data));
   }
 
-  addNewUser(user: User) {}
-
   getSingleUser(id: number) {
-    this.http
-      .get<User>(`${environment.appUrl}/users/${id}`)
-      .subscribe((data) => this.user.next(data));
+    return this.http.get<User>(`${environment.appUrl}/users/${id}`);
   }
 }

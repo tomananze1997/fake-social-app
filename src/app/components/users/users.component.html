@@ -1,7 +1,6 @@
 <div *ngIf="users;else noData">
   <div class="flex">
     <div class="w-3/12 p-2 flex flex-col">
-      <button (click)="this.modalOpened=!this.modalOpened" class="customButton mx-auto my-3">Create new User</button>
       <h3 class="my-2 font-medium">Please select user from the list:</h3>
       <ul>
         <li *ngFor="let user of users" [routerLink]="['/users', user.id,]"
@@ -12,7 +11,7 @@
         </li>
       </ul>
     </div>
-    <section *ngIf="userSelected" class="mt-16">
+    <section *ngIf="userSelected" class="mt-16 w-9/12">
       <nav>
         <button class="customButton bg-blue-500 mx-2" routerLinkActive="opacity-60" [routerLink]="['/users', userId]"
                 [routerLinkActiveOptions]="{exact:true}">User Info
@@ -30,64 +29,6 @@
 
       <router-outlet></router-outlet>
     </section>
-  </div>
-</div>
-<div *ngIf="modalOpened" class="absolute top-0 left-0 right-0 bottom-0 bg-black-rgba flex">
-  <div class="p-3 bg-white m-auto w-96">
-    <form class="flex flex-col" (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <h1 class="text-2xl font-bold text-center">Create new user</h1>
-      <div class="mt-2">
-        <h2 class="font-medium">Personal Information</h2>
-        <input #name="ngModel" placeholder="*Enter your name" ngModel class="customInput" type="text" id="name"
-               name="name" required>
-        <span class="text-xs" *ngIf="!name.valid&&name.touched">Enter correct name!</span>
-        <input #surname="ngModel" placeholder="*Enter your surname" ngModel class="customInput" type="text" id="surname"
-               name="surname"
-               required>
-        <span class="text-xs" *ngIf="!surname.valid&&surname.touched">Enter correct surname!</span>
-        <input #email="ngModel" placeholder="*Enter your email" ngModel email class="customInput" type="email"
-               id="email" name="email"
-               required>
-        <span class="text-xs" *ngIf="!email.valid&&email.touched">Enter correct email!</span>
-        <input #phone="ngModel" placeholder="*Enter phone number (123-456-789)" ngModel class="customInput" type="tel"
-               id="phone"
-               name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
-               required>
-        <span class="text-xs" *ngIf="!phone.valid&&phone.touched">Enter correct phone number!</span>
-        <input placeholder="Enter your website" ngModel class="customInput" id="website" type="string" name="website">
-      </div>
-      <div class="mt-2">
-        <h2 class="font-medium">Address Data</h2>
-        <input #street="ngModel" placeholder="*Enter your street" ngModel class="customInput" type="text" id="street"
-               name="street"
-               required>
-        <span class="text-xs" *ngIf="!street.valid&&street.touched">Enter correct street!</span>
-        <input #city="ngModel" placeholder="*Enter your city" ngModel class="customInput" type="text" id="city"
-               name="city" required>
-        <span class="text-xs" *ngIf="!city.valid&&city.touched">Enter correct city!</span>
-        <input #zipcode="ngModel" placeholder="*Enter your zipcode" ngModel class="customInput" id="zipcode"
-               type="number" name="zipcode"
-               minlength="4" maxlength="4"
-               required>
-        <span class="text-xs" *ngIf="!zipcode.valid&&zipcode.touched">Enter correct zipcode!</span>
-      </div>
-      <div class="mt-2">
-        <h2 class="font-medium">Company Data</h2>
-        <input placeholder="Enter company name" ngModel class="customInput" id="company" type="string" name="company">
-        <input placeholder="Enter company catch phrase" ngModel class="customInput" id="catchPhrase" type="string"
-               name="catchPhrase">
-        <input placeholder="Enter company bs" ngModel class="customInput" id="bs" type="string" name="bs">
-      </div>
-      <span *ngIf="!f.valid&&f.touched" class="text-xs">*inputs are required!</span>
-      <div class="mx-auto mt-3">
-        <button [disabled]="!f.valid"
-                [ngClass]="{'customButton mx-auto': f.valid,'opacity-50 bg-blue-700 text-white rounded px-2':!f.valid}">
-          Create
-        </button>
-        <button (click)="this.modalOpened=!this.modalOpened" type="button" class="customButton mx-auto ml-3">Cencel
-        </button>
-      </div>
-    </form>
   </div>
 </div>
 <ng-template #noData>

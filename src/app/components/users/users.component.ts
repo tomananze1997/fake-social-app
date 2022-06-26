@@ -9,33 +9,22 @@ import { Form } from '@angular/forms';
   templateUrl: './users.component.html',
 })
 export class UsersComponent implements OnInit, OnDestroy {
-  private userSubscription: Subscription;
   users: User[];
   userSelected = false;
   userId: number;
-  modalOpened = false;
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getInitialUsers();
-    this.userSubscription = this.userService.users.subscribe(
-      (data: User[]) => (this.users = data)
-    );
+    this.userService.users.subscribe((data: User[]) => (this.users = data));
   }
 
   ngOnDestroy() {
-    this.userSubscription.unsubscribe();
     this.userSelected = false;
   }
 
   toggleUser(id: number) {
     this.userSelected = true;
     this.userId = id;
-  }
-
-  onSubmit(form: Form) {
-    this.modalOpened = !this.modalOpened;
-    console.log(form);
   }
 }

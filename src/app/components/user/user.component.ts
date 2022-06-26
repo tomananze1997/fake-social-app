@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit, OnDestroy {
-  userSubscription: Subscription;
   user: User;
 
   constructor(
@@ -20,15 +19,11 @@ export class UserComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.userService.getSingleUser(params['id']);
+      this.userService
+        .getSingleUser(params['id'])
+        .subscribe((user: User) => (this.user = user));
     });
-    this.userSubscription = this.userService.user.subscribe(
-      (user: User) => (this.user = user)
-    );
-    console.log(this.user);
   }
 
-  ngOnDestroy() {
-    this.userSubscription.unsubscribe();
-  }
+  ngOnDestroy() {}
 }

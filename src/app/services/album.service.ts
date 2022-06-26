@@ -23,20 +23,14 @@ export class AlbumService {
   }
 
   getInitialPhotos() {
-    this.http
-      .get<Photo[]>(`${environment.appUrl}/photos`)
-      .subscribe((data: Photo[]) => this.photos.next(data));
+    return this.http.get<Photo[]>(`${environment.appUrl}/photos`);
   }
 
   getUserAlbums(id: number) {
-    this.http
-      .get<Album[]>(`${environment.appUrl}/users/${id}/albums`)
-      .subscribe((data) => this.userAlbums.next(data));
+    return this.http.get<Album[]>(`${environment.appUrl}/users/${id}/albums`);
   }
 
   getAlbumPhotos(id: number) {
-    this.http
-      .get<Photo[]>(`${environment.appUrl}/albums/${id}/photos`)
-      .subscribe((data) => this.albumPhotos.next(data));
+    return this.http.get<Photo[]>(`${environment.appUrl}/albums/${id}/photos`);
   }
 }

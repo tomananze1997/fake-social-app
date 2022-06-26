@@ -10,7 +10,7 @@ import { Photo } from '../../interfaces/photo';
   templateUrl: './albums.component.html',
   styleUrls: ['./albums.component.css'],
 })
-export class AlbumsComponent implements OnInit, OnDestroy {
+export class AlbumsComponent implements OnInit {
   albumSubscription: Subscription;
   photoSubscription: Subscription;
   albumList: Album[];
@@ -26,38 +26,27 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.router.url.includes('users')) {
       this.route.params.subscribe((param: Params) => {
-        this.albumService.getUserAlbums(param['id']);
+        this.albumService
+          .getUserAlbums(param['id'])
+          .subscribe((data: Album[]) => {
+            this.albumList = data;
+          });
       });
-      this.albumSubscription = this.albumService.userAlbums.subscribe(
-        (data: Album[]) => {
-          this.albumList = data;
-        }
-      );
     } else {
-      this.albumService.getInitialAlbums();
-      this.albumSubscription = this.albumService.albums.subscribe(
+      this.albumService.albums.subscribe(
         (data: Album[]) => (this.albumList = data)
       );
     }
   }
 
-  ngOnDestroy() {
-    this.albumSubscription.unsubscribe();
-    if (this.photoSubscription) {
-      this.photoSubscription.unsubscribe();
-    }
-  }
-
   onAlbumClick(id: number) {
     this.modalOpen = true;
-    this.albumService.getAlbumPhotos(id);
-    this.photoSubscription = this.albumService.albumPhotos.subscribe(
-      (data: Photo[]) => (this.albumPhotos = data)
-    );
+    this.albumService
+      .getAlbumPhotos(id)
+      .subscribe((data: Photo[]) => (this.albumPhotos = data));
   }
 
   onModalButtonClose() {
     this.modalOpen = false;
-    this.photoSubscription.unsubscribe();
   }
 }

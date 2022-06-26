@@ -13,6 +13,8 @@ import { PostComponent } from './components/post/post.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UnknownSpanPipe } from './pipes/unknown-span.pipe';
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { UnknownSpanPipe } from './pipes/unknown-span.pipe';
     PostsComponent,
     PostComponent,
     UnknownSpanPipe,
+    ShortenPipe,
+    CommentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

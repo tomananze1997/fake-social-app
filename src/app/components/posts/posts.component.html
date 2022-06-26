@@ -1,1 +1,6 @@
-<p>posts works!</p>
+<div *ngIf="postList;else loading">
+  <app-post *ngFor="let post of postList" [post]="post" [userPostStyle]="userPostStyle"></app-post>
+</div>
+<ng-template #loading>
+  <h1>LOADING DATA...</h1>
+</ng-template>
